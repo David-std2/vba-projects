@@ -1,6 +1,6 @@
 # Proyectos y Macros en VBA
 
-Colección estructurada de macros en VBA y scripts en Python desarrollados para cálculo de redes y planificación en sistemas operativos.
+Macros en VBA y scripts en Python desarrollados para cálculo de redes y planificación en sistemas operativos.
 
 ---
 
