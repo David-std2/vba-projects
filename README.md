@@ -1,38 +1,43 @@
-# vba-projects
+# Proyectos y Macros en VBA
 
-### networking/
+Colección estructurada de macros en VBA y scripts en Python desarrollados para cálculo de redes y planificación en sistemas operativos.
 
-IPv4 subnet calculator implemented in VBA for Excel (.xlsm). Includes three modules:
+---
 
-- **Modulo_Subred** — Basic subnet breakdown: given an IP and a base/target prefix, generates a table with network address, subnet mask, first/last usable IP, broadcast, and usable host count.
-- **Modulo_FLSM** — Fixed-Length Subnet Masking: reads a list of areas with host requirements, computes the uniform mask needed for the largest area, generates bit-level binary breakdowns with color-coded subnet/host boundaries, and outputs the full assignment table.
-- **Modulo_VLSM** — Variable-Length Subnet Masking: same input format as FLSM but allocates blocks of different sizes per area using a free-block pool. Tracks parent blocks and renders the binary split tree with subnet annotations.
+### 1. `networking/`
+Calculadora de subredes IPv4 implementada en VBA para Excel (`.xlsm`) y módulos de código fuente (`.bas`):
+- **`Subred_FLSM_VLSM.xlsm`**: Libro de trabajo con hojas y datos de prueba preparados para cada cálculo.
+- **`Modulo_Subred.bas`**: Desglose básico de subredes. A partir de una IP y un prefijo base/objetivo, genera la tabla con dirección de red, máscara, primera y última IP utilizable, dirección de broadcast y conteo de hosts útiles.
+- **`Modulo_FLSM.bas`**: Máscara de subred de longitud fija (FLSM). Lee una lista de áreas con requerimientos de hosts, calcula la máscara uniforme requerida para el área mayor, genera el desglose binario a nivel de bits con delimitación visual y produce la tabla de asignación completa.
+- **`Modulo_VLSM.bas`**: Máscara de subred de longitud variable (VLSM). Asigna bloques de tamaño adaptable por área a partir de un grupo de bloques disponibles, rastrea los bloques padre y genera el árbol binario de división con anotaciones de subred.
 
-### os-scheduling/
+---
 
-CPU scheduling and page replacement algorithms with both VBA (Excel visualization) and Python (console output) implementations.
+### 2. `os-scheduling/`
+Algoritmos de planificación de CPU y reemplazo de páginas con implementaciones en VBA (visualización en Excel) y Python (salida en consola):
 
-**VBA (`src/`):**
-- **Round_Robin.bas** — Round Robin scheduler: reads process table (name, arrival, burst) from the sheet, prompts for quantum, and generates arrival diagrams, queue state, Gantt charts (per-process and sequential), plus WT/CT metrics with averages.
-- **Page_Replacement.bas** — Page replacement simulator: supports NRU (with R/M bit tracking), LRU (exact), and FIFO (with requeue). Renders frame state grids with fault highlighting, and outputs fault count / rate / throughput.
+**VBA (`src/` y `.xlsm`):**
+- **`Round_Robin.xlsm`**: Libro interactivo con datos de procesos y macros para visualización de planificación.
+- **`Page_Replacement.xlsm`**: Libro interactivo para pruebas y renderizado de marcos en reemplazo de páginas.
+- **`Round_Robin.bas`**: Planificador Round Robin. Lee la tabla de procesos (nombre, tiempo de llegada, ráfaga), solicita el quantum y genera diagramas de llegada, estado de colas, diagramas de Gantt (por proceso y secuencial), además de métricas de tiempo de espera (WT) y tiempo de retorno (CT) con sus promedios.
+- **`Page_Replacement.bas`**: Simulador de reemplazo de páginas. Soporta NRU (con seguimiento de bits R y M), LRU (exacto) y FIFO (con reencolado). Renderiza la cuadrícula de estados de marcos con resaltado de fallos y reporta conteo de fallos, tasa de fallos y rendimiento.
 
 **Python (`python/`):**
-- **round_robin.py** — Console-based Round Robin simulation with configurable processes and quantum.
-- **page_replacement.py** — Configurable simulator for NRU, LRU (exact and aging with n-bit counters), FIFO (queue, requeue, second chance). Supports tie-break policies, R-bit reset intervals, and aging tick configuration.
+- **`round_robin.py`**: Simulación en consola de planificación Round Robin con procesos y quantum configurables.
+- **`page_replacement.py`**: Simulador configurable para NRU, LRU (exacto y Aging con contadores de n-bits) y FIFO (cola simple, reencolado y segunda oportunidad). Soporta políticas de desempate, intervalos de reinicio del bit R y configuración de ticks de envejecimiento.
 
-## Usage
+---
 
-### VBA Modules
+## Uso
 
-1. Open the corresponding `.xlsm` workbook (or create a new one).
-2. In the VBA Editor (`Alt+F11`), import the `.bas` file(s) via **File > Import**.
-3. Set up the input data in the sheet as expected by each macro, then run the macro.
+### Módulos VBA
+1. Abrir el libro `.xlsm` correspondiente (o crear uno nuevo).
+2. En el Editor de VBA (`Alt + F11`), importar los archivos `.bas` desde **Archivo > Importar archivo**.
+3. Configurar los datos en la hoja según lo requerido por la macro y ejecutarla.
 
-### Python Scripts
-
+### Scripts en Python
 ```bash
 python os-scheduling/python/page_replacement.py
 python os-scheduling/python/round_robin.py
 ```
-
-Edit the configuration variables at the top of each script to set input data and algorithm parameters.
+Edita las variables de configuración al inicio de cada script para modificar los datos de prueba y parámetros de los algoritmos.
